@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
 
+import useAuthDispositive from './hooks/useAuthDispositive';
 function App() {
+
+  const [data, platform] = useAuthDispositive()
+  const validationPc = data === 'Linux' || data === 'Windows' || data === 'Mac OS' 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {validationPc ?
+        <div>
+          <h1>soy pc {data}</h1>
+          <p>{platform}</p>
+        </div>
+        :
+        <div>
+          <h1>soy mobile {data}</h1>
+          <p>{platform}</p>
+        </div>
+      }
     </div>
   );
 }
